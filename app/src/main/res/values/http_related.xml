@@ -18,7 +18,7 @@
         ...
     -->
 
-    <string name="api_id">RinatIbr-MyInvent-PRD-8f8f85d15-ee234273</string>
+    <string name="api_id">---</string>
 
     <string name="url_ebay_base">http://svcs.ebay.com/services/search/FindingService/v1</string>
 
@@ -77,7 +77,7 @@
     http://svcs.ebay.com/services/search/FindingService/v1?
     OPERATION-NAME=findItemsByCategory
     &SERVICE-VERSION=1.13.0
-    &SECURITY-APPNAME=RinatIbr-MyInvent-PRD-8f8f85d15-ee234273
+    &SECURITY-APPNAME=
     &RESPONSE-DATA-FORMAT=JSON
     &REST-PAYLOAD=true
     &categoryId=267
