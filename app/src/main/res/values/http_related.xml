@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    Following is how to add array-type parameters:
+      check following for more details: https://developer.ebay.com/devzone/finding/concepts/MakingACall.html
+        ...
+        &itemFilter(0).name=MaxPrice
+        &itemFilter(0).value=25
+        &itemFilter(0).paramName=Currency
+        &itemFilter(0).paramValue=USD
+        &itemFilter(1).name=FreeShippingOnly
+        &itemFilter(1).value=true
+        &itemFilter(2).name=ListingType
+        &itemFilter(2).value(0)=AuctionWithBIN
+        &itemFilter(2).value(1)=FixedPrice
+        &paginationInput.entriesPerPage=2
+        ...
+    -->
+
+    <string name="api_id">RinatIbr-MyInvent-PRD-8f8f85d15-ee234273</string>
+
+    <string name="url_ebay_base">http://svcs.ebay.com/services/search/FindingService/v1</string>
+
+    <!--'Rquery' are required queries-->
+    <string name="Rquery_ebay_operation">OPERATION-NAME</string>
+    <string name="value_ebay_operation_category">findItemsByCategory</string>
+
+    <string name="Rquery_ebay_version">SERVICE-VERSION</string>
+    <string name="value_ebay_version_def">1.13.0</string>
+
+    <string name="Rquery_ebay_appid">SECURITY-APPNAME</string>
+
+    <string name="Rquery_ebay_responsetype">RESPONSE-DATA-FORMAT</string>
+    <string name="value_ebay_responsetype">JSON</string>
+
+    <!--REST is a format, more info here: https://stackoverflow.com/a/3861606/8916812-->
+    <string name="Rquery_ebay_payload">REST-PAYLOAD</string>
+    <string name="value_ebay_payload">true</string>
+
+    <!--Categories-->
+    <string name="query_ebay_category">categoryId</string>
+    <string name="value_ebay_category_books">267</string>
+    <string name="value_ebay_category_movies">11232</string>
+    <string name="value_ebay_category_vgames">1249</string>
+
+    <!--
+    itemFilter
+    https://developer.ebay.com/DevZone/finding/CallRef/types/ItemFilter.html
+    -->
+    <!--Remember to add array index in parantheses for multiple inputs-->
+    <string name="query_ebay_itemfilter_name">itemFilter.name</string>
+    <string name="query_ebay_itemfilter_value">itemFilter.value</string>
+    <string name="value_ebay_itemfilter_name_condition">Condition</string>
+    <string name="value_ebay_itemfilter_value_condition_new">1000</string>
+
+    <!--SearchItem-->
+    <string name="query_ebay_searchitem">SearchResult.SearchItem</string>
+    <string name="value_ebay_searchitem_currentprice">currentPrice</string>
+
+    <!--PaginationInput-->
+    <string name="query_ebay_paginput_entriespage">paginationInput.entriesPerPage</string>
+    <string name="query_ebay_paginput_pagenum">paginationInput.pageNumber</string>
+    <string name="value_ebay_entriespage_def">30</string>
+    <string name="value_ebay_pagenum_def">1</string>
+
+    <!--outputSelector - array type, add (n) for value n of return item-->
+    <string name="query_ebay_outputselector">outputSelector</string>
+    <string name="value_ebay_outputselector_seller">SellerInfo</string>
+    <string name="value_ebay_outputselector_store">StoreInfo</string>
+
+    <!--Sort-->
+    <string name="query_ebay_sort">sortOrder</string>
+    <string name="value_ebay_sort">EndTimeSoonest</string>
+
+    <!--Base URL
+    http://svcs.ebay.com/services/search/FindingService/v1?
+    OPERATION-NAME=findItemsByCategory
+    &SERVICE-VERSION=1.13.0
+    &SECURITY-APPNAME=RinatIbr-MyInvent-PRD-8f8f85d15-ee234273
+    &RESPONSE-DATA-FORMAT=JSON
+    &REST-PAYLOAD=true
+    &categoryId=267
+    &paginationInput.pageNumber=3
+    &paginationInput.entriesPerPage=30
+    &outputSelector(0)=SellerInfo
+    &outputSelector(1)=StoreInfo
+    &outputSelector(2)=GalleryInfo
+    &itemFilter(0).name=Condition
+    &itemFilter(0).value=1000
+    &itemFilter(1).name=ListingType
+    &itemFilter(1).value=FixedPrice
+    &SearchResult.SearchItem=currentPrice
+    -->
+
+</resources>
