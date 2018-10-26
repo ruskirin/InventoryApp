@@ -4,7 +4,10 @@ public class EbayItem {
 
     private String name;
     private int quantity;
-    private double price;
+    //TODO: I want to store the time an item was bought, might have to add another variable here
+    //       or might not, depending on how SQLite storage is handled
+    //       Will use LocalDateTime class for this, supposedly simpler
+    private String price;
     private String sellerName;
     private String sellerContact;
     private String thumbnail;
@@ -12,7 +15,7 @@ public class EbayItem {
     public EbayItem() {
         name = "";
         quantity = 0;
-        price = 0.0;
+        price = "";
         sellerName = "";
         sellerContact = "";
         thumbnail = "";
@@ -34,12 +37,12 @@ public class EbayItem {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = "Get for $" + price;
     }
 
     public String getSellerName() {

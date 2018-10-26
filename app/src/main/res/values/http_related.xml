@@ -18,7 +18,7 @@
         ...
     -->
 
-    <string name="api_id">---</string>
+    <string name="api_id"></string>
 
     <string name="url_ebay_base">http://svcs.ebay.com/services/search/FindingService/v1</string>
 
@@ -40,6 +40,12 @@
 
     <!--Categories-->
     <string name="query_ebay_category">categoryId</string>
+
+    <string-array name="array_category_ids">
+        <item>@string/value_ebay_category_books</item>
+        <item>@string/value_ebay_category_movies</item>
+        <item>@string/value_ebay_category_vgames</item>
+    </string-array>
     <string name="value_ebay_category_books">267</string>
     <string name="value_ebay_category_movies">11232</string>
     <string name="value_ebay_category_vgames">1249</string>
@@ -49,10 +55,13 @@
     https://developer.ebay.com/DevZone/finding/CallRef/types/ItemFilter.html
     -->
     <!--Remember to add array index in parantheses for multiple inputs-->
-    <string name="query_ebay_itemfilter_name">itemFilter.name</string>
-    <string name="query_ebay_itemfilter_value">itemFilter.value</string>
+    <string name="query_ebay_itemfilter">itemFilter</string>
+    <string name="query_ebay_itemfilter_name">.name</string>
+    <string name="query_ebay_itemfilter_value">.value</string>
     <string name="value_ebay_itemfilter_name_condition">Condition</string>
     <string name="value_ebay_itemfilter_value_condition_new">1000</string>
+    <string name="value_ebay_itemfilter_name_listingtype">ListingType</string>
+    <string name="value_ebay_itemfilter_value_listingtype">FixedPrice</string>
 
     <!--SearchItem-->
     <string name="query_ebay_searchitem">SearchResult.SearchItem</string>
@@ -68,12 +77,13 @@
     <string name="query_ebay_outputselector">outputSelector</string>
     <string name="value_ebay_outputselector_seller">SellerInfo</string>
     <string name="value_ebay_outputselector_store">StoreInfo</string>
+    <string name="value_ebay_outputselector_gallery">GalleryInfo</string>
 
     <!--Sort-->
     <string name="query_ebay_sort">sortOrder</string>
     <string name="value_ebay_sort">EndTimeSoonest</string>
 
-    <!--Base URL
+    <!--Test URL
     http://svcs.ebay.com/services/search/FindingService/v1?
     OPERATION-NAME=findItemsByCategory
     &SERVICE-VERSION=1.13.0

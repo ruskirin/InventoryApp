@@ -1,4 +1,4 @@
-package project.udacity.my.inventoryapp;
+package project.udacity.my.inventoryapp.http;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

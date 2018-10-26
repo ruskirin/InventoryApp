@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import project.udacity.my.inventoryapp.http.JsonParser;
 
 
 /***
@@ -21,28 +24,35 @@ public class ItemsLiveData extends LiveData<List<EbayItem>> {
 
     public ItemsLiveData(Context context) {
         this.context = context;
+        loadItems();
     }
-
-    //TODO: create a progress bar in onPreExecute if the load is noticeable
 
     @SuppressLint("StaticFieldLeak")
     private void loadItems() {
-        new AsyncTask<String, Void, List<EbayItem>>() {
+        new AsyncTask<Void, Void, List<EbayItem>>() {
+
+            int category = 0;
 
             @Override
-            protected List<EbayItem> doInBackground(String... jsonResponses) {
-                List<EbayItem> items = new ArrayList<>();
-
-                JsonParser.getEbayData(jsonResponses[0], items);
-
-                return items;
+            protected void onPreExecute() {
+                Bundle bundle = new Bundle();
+                category = bundle.getInt("category");
             }
 
-            //TODO: update the UI from here with the returned list of parsed items,
-            //      not certain if 'setValue' is the proper way to go about that
             @Override
-            protected void onPostExecute(List<EbayItem> ebayItems) {
-                setValue(ebayItems);
+            protected List<EbayItem> doInBackground(Void... voids) {
+                List<EbayItem> items = new ArrayList<>();
+
+                if(category == 0)
+                    return null;
+
+                String url = JsonParser.buildUri(context, category);
+                if(url != null)
+                    JsonParser.getEbayData(url, items);
+                else
+                    return null;
+
+                return items;
             }
         }.execute();
     }

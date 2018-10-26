@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_std">8dp</dimen>
+
+    <!--category_front_fragment-->
+    <dimen name="category_front_padding_std">4dp</dimen>
+
+    <!--browser_list_item_layout-->
+    <dimen name="browser_list_item_button_size">50dp</dimen>
+    <dimen name="browser_list_item_button_margin">16dp</dimen>
+
+</resources>
