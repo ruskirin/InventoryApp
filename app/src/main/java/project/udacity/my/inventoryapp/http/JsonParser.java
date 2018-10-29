@@ -35,6 +35,7 @@ public class JsonParser {
         final String SEARCH_ITEM_SELLER_NAME = "sellerUserName";
         final String SEARCH_ITEM_STORE = "storeInfo";
         final String SEARCH_ITEM_STORE_CONTACT = "storeURL";
+        final String SEARCH_ITEM_URL = "viewItemURL";
         final String SEARCH_ITEM_CONTAINER = "galleryInfoContainer";
         final String SEARCH_ITEM_CONTAINER_THNAIL = "galleryURL";
         final String SEARCH_ITEM_CONTAINER_THNAIL_VALUE = "__value__";
@@ -71,6 +72,10 @@ public class JsonParser {
                         item.setSellerContact(jsonItem.getJSONArray(SEARCH_ITEM_STORE)
                                 .getJSONObject(ITEM_DEF)
                                 .getJSONArray(SEARCH_ITEM_STORE_CONTACT)
+                                .getString(ITEM_DEF));
+
+                    } else {
+                        item.setSellerContact(jsonItem.getJSONArray(SEARCH_ITEM_URL)
                                 .getString(ITEM_DEF));
                     }
                     item.setThumbnail(jsonItem.getJSONArray(SEARCH_ITEM_CONTAINER)

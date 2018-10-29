@@ -1,6 +1,10 @@
 package project.udacity.my.inventoryapp.activities;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import project.udacity.my.inventoryapp.R;
 
 /**
  * TODO: list to get done:
@@ -13,5 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 
 public class InventoryActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.inventory_list_layout);
 
+        
+    }
 }
