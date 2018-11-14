@@ -11,14 +11,16 @@ public class EbayItem {
     private String sellerName;
     private String sellerContact;
     private String thumbnail;
+    private String phone;
 
     public EbayItem() {
         name = "";
         quantity = 1;
         price = 0.0;
         sellerName = "";
-        sellerContact = "";
+        sellerContact = "http://www.google.com";
         thumbnail = "";
+        phone = "123";
     }
 
     public String getName() {
@@ -67,5 +69,13 @@ public class EbayItem {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

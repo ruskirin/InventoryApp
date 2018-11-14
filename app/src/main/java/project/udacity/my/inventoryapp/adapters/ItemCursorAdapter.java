@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,16 +64,19 @@ public class ItemCursorAdapter extends CursorAdapter {
         final LinearLayout confirmationLayout = fragment.getView().findViewById(R.id.inventory_list_layout_confirmation);
         final LinearLayout editLayout = fragment.getView().findViewById(R.id.inventory_list_layout_edit);
 
-        final Button contactButton = view.findViewById(R.id.inventory_list_item_button_contact);
+        final Button contactButton = view.findViewById(R.id.inventory_list_item_button_ebay);
         final Button sellButton = view.findViewById(R.id.inventory_list_item_button_sell);
         final Button plusButton = view.findViewById(R.id.inventory_list_item_button_incr);
         final Button minusButton = view.findViewById(R.id.inventory_list_item_button_decr);
         final Button deleteButton = view.findViewById(R.id.inventory_list_item_button_delete);
         final Button editButton = view.findViewById(R.id.inventory_list_item_button_edit);
+        final Button phoneButton = view.findViewById(R.id.inventory_list_item_button_phone);
 
         final EditText editName = fragment.getView().findViewById(R.id.inventory_list_edit_name);
         final EditText editPrice = fragment.getView().findViewById(R.id.inventory_list_edit_price);
+        final EditText editQuantity = fragment.getView().findViewById(R.id.inventory_list_edit_quantity);
         final EditText editSeller = fragment.getView().findViewById(R.id.inventory_list_edit_seller);
+        final EditText editPhone = fragment.getView().findViewById(R.id.inventory_list_edit_phone);
 
         final ImageView itemImage = view.findViewById(R.id.inventory_list_item_image);
         final TextView nameView = view.findViewById(R.id.inventory_list_item_title);
@@ -82,6 +84,7 @@ public class ItemCursorAdapter extends CursorAdapter {
         final TextView sellerView = view.findViewById(R.id.inventory_list_item_seller);
         final TextView quantityView = view.findViewById(R.id.inventory_list_item_quantity);
         final TextView confirmText = fragment.getView().findViewById(R.id.inventory_list_confirmation_text);
+        final TextView phoneView = view.findViewById(R.id.inventory_list_item_contact_phone);
 
         final String thumbnail = cursor.getString(cursor.getColumnIndex(InventoryContract.CommonEntry.IMAGE));
         final int id = cursor.getInt(cursor.getColumnIndex(InventoryContract.CommonEntry._ID));
@@ -89,17 +92,20 @@ public class ItemCursorAdapter extends CursorAdapter {
         final double priceBuy = cursor.getDouble(cursor.getColumnIndex(InventoryContract.CommonEntry.PRICE_BUY));
         final String seller = cursor.getString(cursor.getColumnIndex(InventoryContract.CommonEntry.SELLER));
         final String sellerPage = cursor.getString(cursor.getColumnIndex(InventoryContract.CommonEntry.SELLER_CONTACT));
+        final String phone = cursor.getString(cursor.getColumnIndex(InventoryContract.CommonEntry.PHONE));
         final int quantity = cursor.getInt(cursor.getColumnIndex(InventoryContract.CommonEntry.AMT_STOCK));
 
         final String priceText = "$ " + priceBuy;
         final String sellerText = "Seller: " + seller;
         final String quantityText = "Stock:\n" + quantity;
+        final String phoneText = "Call: " + phone;
 
         Picasso.get().load(thumbnail).into(itemImage);
         nameView.setText(name);
         priceBuyView.setText(priceText);
         sellerView.setText(sellerText);
         quantityView.setText(quantityText);
+        phoneView.setText(phoneText);
 
         /**
          * Packed under one method because found no way to access the individual cell elements otherwise,
@@ -177,6 +183,14 @@ public class ItemCursorAdapter extends CursorAdapter {
             public void onClick(View v) {
                 Intent toStore = new Intent(Intent.ACTION_VIEW, Uri.parse(sellerPage));
                 context.startActivity(toStore);
+            }
+        });
+
+        phoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toCall = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+" + phone, null));
+                context.startActivity(toCall);
             }
         });
 

@@ -291,6 +291,14 @@ public class InventoryProvider extends ContentProvider {
             if(isForSale != InventoryContract.FOR_SALE_NO && isForSale != InventoryContract.FOR_SALE_YES)
                 throw new IllegalArgumentException(LOG_TAG + "(-1) is not for sale, (1) is for sale");
         }
+
+        if(values.containsKey(CommonEntry.PHONE)) {
+            final String phone = values.getAsString(CommonEntry.PHONE);
+
+            if(phone.length() < 3)
+                throw new IllegalArgumentException(LOG_TAG + "phone must have >3 digits");
+        }
+
         return db.update(table, values, selection, selectionArgs);
     }
 

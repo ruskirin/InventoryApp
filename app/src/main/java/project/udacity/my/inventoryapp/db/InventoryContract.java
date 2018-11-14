@@ -21,6 +21,7 @@ public final class InventoryContract {
     public static final int STOCK_DEF = 1;
     public static final int FOR_SALE_YES = 1;
     public static final int FOR_SALE_NO = -1;
+    public static final String PHONE_DEF = "123";
 
     /*
      For variables shared between all tables
@@ -36,6 +37,7 @@ public final class InventoryContract {
         public static final String SELLER = "seller_name";
         public static final String SELLER_CONTACT = "seller_addr";
         public static final String FOR_SALE = "is_for_sale";
+        public static final String PHONE = "phone";
     }
 
     public static final class BookEntry {

@@ -79,11 +79,25 @@
             android:inputType="numberDecimal"/>
 
         <EditText
+            android:id="@+id/inventory_list_edit_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
+            android:inputType="number"/>
+
+        <EditText
             android:id="@+id/inventory_list_edit_seller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
             android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/inventory_list_edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
+            android:inputType="phone"/>
 
         <LinearLayout
             android:layout_width="match_parent"

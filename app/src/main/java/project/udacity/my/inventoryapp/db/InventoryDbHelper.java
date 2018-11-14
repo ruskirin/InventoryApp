@@ -28,7 +28,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
                 + CommonEntry.SELLER + " TEXT NOT NULL, "
                 + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO + ", "
+                + CommonEntry.PHONE + " TEXT DEFAULT " + InventoryContract.PHONE_DEF
                 + ");";
 
         final String CREATE_TABLE_MOVIES = "CREATE TABLE " + MovieEntry.TABLE_NAME + " ("
@@ -40,7 +41,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
                 + CommonEntry.SELLER + " TEXT NOT NULL, "
                 + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO + ", "
+                + CommonEntry.PHONE + " TEXT DEFAULT " + InventoryContract.PHONE_DEF
                 + ");";
 
         final String CREATE_TABLE_GAMES = "CREATE TABLE " + GameEntry.TABLE_NAME + " ("
@@ -52,7 +54,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
                 + CommonEntry.SELLER + " TEXT NOT NULL, "
                 + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO + ", "
+                + CommonEntry.PHONE + " TEXT DEFAULT " + InventoryContract.PHONE_DEF
                 + ");";
 
         db.execSQL(CREATE_TABLE_BOOKS);

@@ -19,6 +19,8 @@
     <string name="confirmation_delete_yes">Continue</string>
     <string name="confirmation_delete_no">Go back!</string>
 
+    <string name="menu_add_item">Add item</string>
+
     <!--inventory_list_item_layout-->
     <string name="inventory_list_item_button">S\nE\nL\nL</string>
 
