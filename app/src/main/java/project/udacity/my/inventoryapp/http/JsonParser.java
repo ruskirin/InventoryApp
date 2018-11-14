@@ -2,15 +2,17 @@ package project.udacity.my.inventoryapp.http;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import project.udacity.my.inventoryapp.EbayItem;
+import project.udacity.my.inventoryapp.objects.EbayItem;
 import project.udacity.my.inventoryapp.R;
 
 /***
@@ -20,9 +22,11 @@ import project.udacity.my.inventoryapp.R;
  */
 public class JsonParser {
 
-    public static void getEbayData(String jsonResponse, List<EbayItem> items) {
+    public static List<EbayItem> getEbayData(String jsonResponse) {
+        List<EbayItem> items = new ArrayList<>();
+
         final int ITEM_DEF = 0;
-        final int THNAIL_SMALL = 2;
+        final int THNAIL_MED = 1;
         final String MAIN_ARRAY = "findItemsByCategoryResponse";
         final String QUERY_RESPONSE = "ack";
         final String QUERY_SEARCH = "searchResult";
@@ -45,17 +49,18 @@ public class JsonParser {
          to avoid instantiating all of the go-between objects I chain a lot of the calls
          */
         try {
-            EbayItem item = new EbayItem();
+            final String LOG_TAG = "JsonParser";
             JSONObject jsonObject = new JSONObject(jsonResponse);
             JSONObject categoryObject = jsonObject.getJSONArray(MAIN_ARRAY).getJSONObject(ITEM_DEF);
             JSONArray code = categoryObject.getJSONArray(QUERY_RESPONSE);
 
-            if(code.getJSONObject(ITEM_DEF).getString(QUERY_RESPONSE).equals("Success")) {
+            if(code.get(ITEM_DEF).toString().trim().equals("Success")) {
                 JSONArray itemArray = categoryObject.getJSONArray(QUERY_SEARCH)
                         .getJSONObject(ITEM_DEF)
                         .getJSONArray(QUERY_SEARCH_ITEM);
 
                 for (int i = 0; i < itemArray.length(); i++) {
+                    EbayItem item = new EbayItem();
                     JSONObject jsonItem = itemArray.getJSONObject(i);
                     item.setName(jsonItem.getJSONArray(SEARCH_ITEM_TITLE)
                             .getString(ITEM_DEF));
@@ -81,14 +86,17 @@ public class JsonParser {
                     item.setThumbnail(jsonItem.getJSONArray(SEARCH_ITEM_CONTAINER)
                             .getJSONObject(ITEM_DEF)
                             .getJSONArray(SEARCH_ITEM_CONTAINER_THNAIL)
-                            .getJSONObject(THNAIL_SMALL)
+                            .getJSONObject(THNAIL_MED)
                             .getString(SEARCH_ITEM_CONTAINER_THNAIL_VALUE));
+
+                    items.add(item);
                 }
             }
 
         } catch(JSONException e) {
             e.printStackTrace();
         }
+        return items;
     }
 
     public static String buildUri(Context context, int category) {
@@ -145,8 +153,6 @@ public class JsonParser {
             return uriBuilder.build().toString();
         }
 
-        //TODO: on null return some screen
-        Toast.makeText(context, "Oops! Something went wrong! Bad category id.", Toast.LENGTH_LONG).show();
         return null;
     }
 }

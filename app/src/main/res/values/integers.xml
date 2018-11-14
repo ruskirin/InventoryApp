@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="category_error">-1</integer>
+    <integer name="category_books">0</integer>
+    <integer name="category_movies">1</integer>
+    <integer name="category_games">2</integer>
+
+    <integer name="operation_insert">10</integer>
+    <integer name="operation_delete">20</integer>
+    <integer name="operation_update">30</integer>
+
+</resources>

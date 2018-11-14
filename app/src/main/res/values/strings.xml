@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">InventoryApp</string>
+
+    <!--ItemBrowserAdapter-->
+    <string name="text_price">Get for $</string>
+
+    <!--InventoryClickAsyncLoader-->
+    <string name="asyncloader_error_category">Uh oh! Bad category!</string>
+    <string name="asyncloader_error_operation">Uh oh! Bad operation!</string>
+    <string name="asyncloader_error_args">Uh oh! The item does not exist in the database!</string>
+    <string name="asyncloader_error_args_empty">Can\'t complete, bad row selected!</string>
+    <string name="asyncloader_error_contentvalues">Can\'t complete, no values passed!</string>
+
+    <!--inventory_list_layout-->
+    <string name="edit_yes">Confirm</string>
+    <string name="edit_no">Cancel</string>
+    <string name="empty_text_stock">Looks like you have nothing in stock! Press the button below to go shopping!</string>
+    <string name="confirmation_delete_text">This will permanently remove the item. Are you sure?</string>
+    <string name="confirmation_delete_yes">Continue</string>
+    <string name="confirmation_delete_no">Go back!</string>
+
+    <!--inventory_list_item_layout-->
+    <string name="inventory_list_item_button">S\nE\nL\nL</string>
+
+    <!--browser_list_layout-->
+    <string name="error_text_connection">Uh oh! Bad connection!\nPlease check your network settings and make sure you\'re connected to the world</string>
 </resources>

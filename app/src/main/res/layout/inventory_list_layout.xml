@@ -1,14 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/inventory_list_recycler"
+    <ListView
+        android:id="@+id/inventory_list_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/inventory_list_layout_confirmation"
+        android:layout_width="@dimen/inventory_list_layout_confirmation_width"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_std"
+        android:layout_gravity="center"
+        android:elevation="@dimen/padding_std"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/inventory_list_confirmation_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/confirmation_delete_text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/inventory_list_confirmation_button_yes"
+                android:layout_width="@dimen/inventory_list_button_confirmation_width"
+                android:layout_height="@dimen/inventory_list_button_confirmation_height"
+                android:text="@string/confirmation_delete_yes"
+                android:textSize="@dimen/inventory_list_button_confirmation_text"/>
+
+            <Button
+                android:id="@+id/inventory_list_confirmation_button_no"
+                android:layout_width="@dimen/inventory_list_button_confirmation_width"
+                android:layout_height="@dimen/inventory_list_button_confirmation_height"
+                android:text="@string/confirmation_delete_no"
+                android:textSize="@dimen/inventory_list_button_confirmation_text"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inventory_list_layout_edit"
+        android:layout_width="@dimen/inventory_list_layout_edit_width"
+        android:layout_height="@dimen/inventory_list_layout_edit_height"
+        android:layout_gravity="center"
+        android:background="@android:color/white"
+        android:elevation="@dimen/padding_std"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/inventory_list_edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/inventory_list_edit_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/inventory_list_edit_seller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inventory_list_layout_edit_textview_paddingtop"
+            android:inputType="text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/inventory_list_edit_button_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_yes"/>
+
+            <Button
+                android:id="@+id/inventory_list_edit_button_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_no"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inventory_activity_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/inventoryapp_noimage"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/empty_text_stock"/>
+
+    </LinearLayout>
+
+</FrameLayout>

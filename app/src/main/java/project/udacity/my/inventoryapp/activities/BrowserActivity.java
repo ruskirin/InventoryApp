@@ -1,5 +1,6 @@
 package project.udacity.my.inventoryapp.activities;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -8,55 +9,90 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import project.udacity.my.inventoryapp.EbayItem;
-import project.udacity.my.inventoryapp.ItemBrowserAdapter;
-import project.udacity.my.inventoryapp.ItemsViewModel;
+import project.udacity.my.inventoryapp.BrowserViewModelFactory;
+import project.udacity.my.inventoryapp.objects.EbayItem;
+import project.udacity.my.inventoryapp.ItemBrowserViewModel;
 import project.udacity.my.inventoryapp.R;
+import project.udacity.my.inventoryapp.Utility;
+import project.udacity.my.inventoryapp.adapters.ItemBrowserAdapter;
 
-public class BrowserActivity extends AppCompatActivity {
+public class BrowserActivity extends AppCompatActivity implements Utility {
 
-    public final static String SETTINGS_ONE = "settings_one";
+    private final String LOG_TAG = this.getClass().getSimpleName();
 
-    //TODO: this activity is responsible for browsing through the eBay data, so must be passed some
-    //       identifying variable to know which category was selected; for now going with SharedPrefs
+    private ItemBrowserAdapter itemBrowserAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.browser_list_layout);
+        setContentView(R.layout.browse_list_layout);
 
-        List<EbayItem> browseItems = new ArrayList<>();
+        final int category = getIntent()
+                .getIntExtra("category", getResources().getInteger(R.integer.category_error));
 
-        //TODO: pass the category selected as a bundle instead of sharedpreferences!
-        Bundle bundle = new Bundle();
+        //Create a class that implements ViewModelProvider.Factory to customize ViewModel (this case:
+        //  take in more parameters)
+        final ItemBrowserViewModel viewModel = ViewModelProviders
+                .of(this, new BrowserViewModelFactory(this.getApplication(), this, category))
+                .get(ItemBrowserViewModel.class);
 
-        ItemsViewModel itemsViewModel = ViewModelProviders.of(this).get(ItemsViewModel.class);
+        LinearLayout errorLayout = findViewById(R.id.browse_list_error);
+        if(isNetworkAvailable()) {
+            errorLayout.setVisibility(View.GONE);
 
+        } else
+            errorLayout.setVisibility(View.VISIBLE);
+
+        RecyclerView browseRecycler = findViewById(R.id.browse_list_recycler);
         StaggeredGridLayoutManager layoutManager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        itemBrowserAdapter = new ItemBrowserAdapter(this, category);
 
-        RecyclerView browseRecycler = new RecyclerView(this);
-        ItemBrowserAdapter itemBrowserAdapter = new ItemBrowserAdapter(browseItems);
-
+        browseRecycler.setHasFixedSize(true); //Less overhead, set true if cell-size won't change dynamically
         browseRecycler.setLayoutManager(layoutManager);
+
+        viewModel.getData().observe(this, new Observer<List<EbayItem>>() {
+            @Override
+            public void onChanged(@Nullable List<EbayItem> ebayItems) {
+                if(ebayItems != null)
+                    itemBrowserAdapter.updateData(ebayItems);
+            }
+        });
+
         browseRecycler.setAdapter(itemBrowserAdapter);
-
-        if(isNetworkAvailable()) {
-            browseItems = itemsViewModel.getData().getValue();
-
-        } else {
-            Toast.makeText(this,
-                    "Please check your internet connection.", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+    //---------------Helper methods----------------//
+    @Override
+    public boolean isNetworkAvailable() {
+        ConnectivityManager cm;
+
+        if((cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE)) != null) {
+            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+            return networkInfo != null && networkInfo.isConnected();
+        }
+        return false;
+    }
+
+    @Override
+    public void printItems(List<EbayItem> items, String tag) {
+
+        if(items != null) {
+            Log.i(tag, "Passed list size = " + items.size());
+
+            for (EbayItem i : items) {
+                Log.i(tag, "Retrieved Item name = " + i.getName() + ", "
+                        + "price = " + i.getPrice() + ", "
+                        + "seller = " + i.getSellerName() + ", "
+                        + "thumbnail = " + i.getThumbnail() + ", "
+                        + "quantity = " + i.getQuantity());
+            }
+        }
     }
 }

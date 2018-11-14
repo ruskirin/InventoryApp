@@ -1,59 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/category_list_card_cardview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/category_list_card_cardview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
-            <ImageView
-                android:id="@+id/category_list_card_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/inventoryapp_category_books"/>
-            
-            <Button
-                android:id="@+id/category_list_card_buybutton"
-                android:layout_width="@dimen/browser_list_item_button_size"
-                android:layout_height="@dimen/browser_list_item_button_size"
-                android:layout_margin="@dimen/browser_list_item_button_margin"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/category_list_card_image"
-                tools:text="BUY"/>
+        <ImageView
+            android:id="@+id/category_list_card_image"
+            android:layout_width="@dimen/browser_list_item_image_width"
+            android:layout_height="@dimen/browser_list_item_image_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true" />
 
-            <TextView
-                android:id="@+id/category_list_card_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_std"
-                android:layout_below="@+id/category_list_card_image"
-                android:layout_alignParentLeft="true"
-                tools:text="TITLE"/>
+        <Button
+            android:id="@+id/category_list_card_buybutton"
+            android:layout_width="@dimen/browser_list_item_button_size"
+            android:layout_height="@dimen/browser_list_item_button_size"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/browser_list_item_button_margin"
+            android:layout_toRightOf="@+id/category_list_card_image"
+            tools:text="BUY" />
 
-            <TextView
-                android:id="@+id/category_list_card_seller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_std"
-                android:layout_below="@+id/category_list_card_title"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                tools:text="SELLER"/>
-            
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/category_list_card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_list_card_image"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/padding_std"
+            tools:text="TITLE" />
 
-    </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/category_list_card_seller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_list_card_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="@dimen/padding_std"
+            tools:text="SELLER" />
 
-</LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

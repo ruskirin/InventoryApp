@@ -31,8 +31,6 @@ public class CategoryActivity extends FragmentActivity {
         categoryPager = findViewById(R.id.main_viewpager);
         CategoryPagerAdapter pagerAdapter = new CategoryPagerAdapter(getSupportFragmentManager());
         categoryPager.setAdapter(pagerAdapter);
-
-        categoryPager.setOnClickListener(pagerClick);
     }
 
     static class CategoryPagerAdapter extends FragmentPagerAdapter {
@@ -42,8 +40,8 @@ public class CategoryActivity extends FragmentActivity {
         }
 
         @Override
-        public Fragment getItem(int i) {
-            return CategoryFragment.newInstance();
+        public Fragment getItem(int position) {
+            return CategoryFragment.newInstance(position);
         }
 
         @Override
@@ -51,28 +49,4 @@ public class CategoryActivity extends FragmentActivity {
             return NUM_CATEGORIES;
         }
     }
-
-    private View.OnClickListener pagerClick = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            int category = categoryPager.getCurrentItem();
-            Intent toInventory = new Intent(v.getContext(), InventoryActivity.class);
-
-            switch(category) {
-                case 0: //Books
-                    toInventory.putExtra("category", 0);
-                    startActivity(toInventory);
-                    break;
-                case 1: //Movies
-                    toInventory.putExtra("category", 1);
-                    startActivity(toInventory);
-                    break;
-                case 2: //Games
-                    toInventory.putExtra("category", 2);
-                    startActivity(toInventory);
-                    break;
-            }
-        }
-    };
 }

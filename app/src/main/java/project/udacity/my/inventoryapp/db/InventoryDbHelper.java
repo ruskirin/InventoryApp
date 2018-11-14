@@ -1,10 +1,11 @@
-package project.udacity.my.inventoryapp;
+package project.udacity.my.inventoryapp.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import project.udacity.my.inventoryapp.InventoryContract.*;
+import project.udacity.my.inventoryapp.db.InventoryContract;
+import project.udacity.my.inventoryapp.db.InventoryContract.*;
 
 public class InventoryDbHelper extends SQLiteOpenHelper {
 
@@ -24,11 +25,10 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.IMAGE + " TEXT, "
                 + CommonEntry.PRICE_BUY + " FLOAT NOT NULL, "
                 + CommonEntry.PRICE_SELL + " FLOAT, "
-                + CommonEntry.AMT_STOCK + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.AMT_SOLD + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.SELLER + "TEXT NOT NULL, "
-                + CommonEntry.SELLER_CONTACT + "TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + "INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
+                + CommonEntry.SELLER + " TEXT NOT NULL, "
+                + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
                 + ");";
 
         final String CREATE_TABLE_MOVIES = "CREATE TABLE " + MovieEntry.TABLE_NAME + " ("
@@ -37,11 +37,10 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.IMAGE + " TEXT, "
                 + CommonEntry.PRICE_BUY + " FLOAT NOT NULL, "
                 + CommonEntry.PRICE_SELL + " FLOAT, "
-                + CommonEntry.AMT_STOCK + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.AMT_SOLD + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.SELLER + "TEXT NOT NULL, "
-                + CommonEntry.SELLER_CONTACT + "TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + "INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
+                + CommonEntry.SELLER + " TEXT NOT NULL, "
+                + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
                 + ");";
 
         final String CREATE_TABLE_GAMES = "CREATE TABLE " + GameEntry.TABLE_NAME + " ("
@@ -50,11 +49,10 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 + CommonEntry.IMAGE + " TEXT, "
                 + CommonEntry.PRICE_BUY + " FLOAT NOT NULL, "
                 + CommonEntry.PRICE_SELL + " FLOAT, "
-                + CommonEntry.AMT_STOCK + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.AMT_SOLD + "INTEGER DEFAULT " + InventoryContract.STOCK_EMPTY + ", "
-                + CommonEntry.SELLER + "TEXT NOT NULL, "
-                + CommonEntry.SELLER_CONTACT + "TEXT NOT NULL, "
-                + CommonEntry.FOR_SALE + "INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
+                + CommonEntry.AMT_STOCK + " INTEGER DEFAULT " + InventoryContract.STOCK_DEF + ", "
+                + CommonEntry.SELLER + " TEXT NOT NULL, "
+                + CommonEntry.SELLER_CONTACT + " TEXT NOT NULL, "
+                + CommonEntry.FOR_SALE + " INTEGER NOT NULL DEFAULT " + InventoryContract.FOR_SALE_NO
                 + ");";
 
         db.execSQL(CREATE_TABLE_BOOKS);
@@ -62,7 +60,6 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_GAMES);
     }
 
-    //TODO: perhaps create a temp copy of the dropped tables and confirm the deletion
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + BookEntry.TABLE_NAME);

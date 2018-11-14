@@ -1,4 +1,4 @@
-package project.udacity.my.inventoryapp;
+package project.udacity.my.inventoryapp.objects;
 
 public class EbayItem {
 
@@ -7,15 +7,15 @@ public class EbayItem {
     //TODO: I want to store the time an item was bought, might have to add another variable here
     //       or might not, depending on how SQLite storage is handled
     //       Will use LocalDateTime class for this, supposedly simpler
-    private String price;
+    private double price;
     private String sellerName;
     private String sellerContact;
     private String thumbnail;
 
     public EbayItem() {
         name = "";
-        quantity = 0;
-        price = "";
+        quantity = 1;
+        price = 0.0;
         sellerName = "";
         sellerContact = "";
         thumbnail = "";
@@ -37,12 +37,12 @@ public class EbayItem {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
-        this.price = "Get for $" + price;
+        this.price = price;
     }
 
     public String getSellerName() {
